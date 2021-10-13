@@ -21,5 +21,10 @@ docker run --rm -p 8000:8000 --network awslocal --name dynamodb amazon/dynamodb-
 
 Por último, ingresamos a la carpeta del proyecto por medio del panel de comandos y ejecutamos lo siguiente para levantar la API:
 sam local start-api --docker-network awslocal
+
+Accedemos a:
+http://localhost:8000/shell y copiamos el código de Tablas.txt
+
+Por último, podemos hacer las consultas http.
 ```
 
