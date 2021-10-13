@@ -1,0 +1,16 @@
+POST http://127.0.0.1:3000/envios
+Content-Type: application/json
+
+{
+  "destino": "Mendoza, Godoy Cruz",
+  "email": "danidumont@gmail.com"
+}
+
+###
+GET http://127.0.0.1:3000/envios/pendientes
+Content-Type: application/json
+
+
+### colocar id de un envio 
+PUT http://127.0.0.1:3000/envios/05b45cff-f968-439b-a69e-fab9d9175841/entregado
+Content-Type: application/json
