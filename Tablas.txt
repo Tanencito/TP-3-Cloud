@@ -3,7 +3,7 @@
 var params = {
     TableName: 'Envio',
     KeySchema: [ 
-        { // Required HASH type attribute
+        {
             AttributeName: 'id',
             KeyType: 'HASH',
         },
@@ -11,12 +11,11 @@ var params = {
     AttributeDefinitions: [ 
         {
             AttributeName: 'id',
-            AttributeType: 'S', // (S | N | B) for string, number, binary
+            AttributeType: 'S', 
         },{
         AttributeName: 'pendiente',
-            AttributeType: 'S', // (S | N | B) for string, number, binary
+            AttributeType: 'S', 
         }
-    
     ],
     ProvisionedThroughput: { 
         ReadCapacityUnits: 1, 
@@ -26,18 +25,18 @@ var params = {
         { 
             IndexName: 'EnviosPendientesIndex', 
             KeySchema: [
-                { // Required HASH type attribute
+                { 
                     AttributeName: 'id',
                     KeyType: 'HASH',
                 },
-                { // Optional RANGE key type for HASH + RANGE secondary indexes
+                { 
                     AttributeName: 'pendiente', 
                     KeyType: 'RANGE', 
                 }
             ],
             Projection: { 
-                ProjectionType: 'INCLUDE', // (ALL | KEYS_ONLY | INCLUDE)
-                NonKeyAttributes: [ // required / allowed only for INCLUDE
+                ProjectionType: 'INCLUDE', 
+                NonKeyAttributes: [ 
                     'pendiente',
                 ],
             },
@@ -51,6 +50,5 @@ var params = {
 dynamodb.createTable(params, function(err, data) {
     if (err) ppJson(err); // ocurre un error
     else ppJson(data); // respuesta satisfactoria
-
 });
 
