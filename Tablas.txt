@@ -1,14 +1,14 @@
-// CODIGO TABLA ENVIO
+// Código para la creación de la tabla
 
 var params = {
     TableName: 'Envio',
-    KeySchema: [ // The type of of schema.  Must start with a HASH type, with an optional second RANGE.
+    KeySchema: [ 
         { // Required HASH type attribute
             AttributeName: 'id',
             KeyType: 'HASH',
         },
     ],
-    AttributeDefinitions: [ // The names and types of all primary and index key attributes only
+    AttributeDefinitions: [ 
         {
             AttributeName: 'id',
             AttributeType: 'S', // (S | N | B) for string, number, binary
@@ -17,13 +17,12 @@ var params = {
             AttributeType: 'S', // (S | N | B) for string, number, binary
         }
     
-        // ... more attributes ...
     ],
-    ProvisionedThroughput: { // required provisioned throughput for the table
+    ProvisionedThroughput: { 
         ReadCapacityUnits: 1, 
         WriteCapacityUnits: 1, 
     },
-    GlobalSecondaryIndexes: [ // optional (list of GlobalSecondaryIndex)
+    GlobalSecondaryIndexes: [ 
         { 
             IndexName: 'EnviosPendientesIndex', 
             KeySchema: [
@@ -36,24 +35,22 @@ var params = {
                     KeyType: 'RANGE', 
                 }
             ],
-            Projection: { // attributes to project into the index
+            Projection: { 
                 ProjectionType: 'INCLUDE', // (ALL | KEYS_ONLY | INCLUDE)
                 NonKeyAttributes: [ // required / allowed only for INCLUDE
                     'pendiente',
-                    // ... more attribute names ...
                 ],
             },
-            ProvisionedThroughput: { // throughput to provision to the index
+            ProvisionedThroughput: { 
                 ReadCapacityUnits: 1,
                 WriteCapacityUnits: 1,
             },
         },
-        // ... more global secondary indexes ...
     ],
 };
 dynamodb.createTable(params, function(err, data) {
-    if (err) ppJson(err); // an error occurred
-    else ppJson(data); // successful response
+    if (err) ppJson(err); // ocurre un error
+    else ppJson(data); // respuesta satisfactoria
 
 });
 
